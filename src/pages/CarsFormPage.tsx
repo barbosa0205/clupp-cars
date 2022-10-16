@@ -129,8 +129,8 @@ export const CarsFormPage = () => {
       const downloadUrl = await getDownloadURL(storageRef)
 
       await addDoc(collection(db, 'vehicles'), {
-        brand,
-        model,
+        brand: brand.trim(),
+        model: model.trim(),
         year,
         frontPictureURL: downloadUrl,
         deleted: false,

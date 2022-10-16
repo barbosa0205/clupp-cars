@@ -61,7 +61,7 @@ export const CarsList = () => {
     const newArray = cars?.filter((c) => {
       const title = `${c.brand.toLowerCase()} ${c.model.toLowerCase()} ${
         c.year
-      }`
+      }`.trim()
 
       console.log(title)
 
