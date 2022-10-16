@@ -1,0 +1,43 @@
+.inputContainer {
+  position: relative;
+  width: fit-content;
+}
+
+.input {
+  position: relative;
+  border-radius: 0.5rem;
+  border: 1px solid #000;
+  margin: 1rem 0;
+  min-height: 4rem;
+  min-width: 26rem;
+  width: 46rem;
+  outline: none;
+  padding: 0.5rem 1rem;
+  width: 90%;
+
+  & input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  & input[type='number'] {
+    -moz-appearance: textfield;
+  }
+}
+
+.label {
+  position: absolute;
+  top: 0;
+  left: 3rem;
+  background: #fff;
+  padding: 0rem 0.3rem;
+}
+
+@media (min-width: 768px) {
+  .input {
+    min-width: 46rem;
+    min-height: 5rem;
+    font-size: 1.8rem;
+  }
+}

@@ -1,0 +1,27 @@
+.container {
+  position: relative;
+}
+
+.image {
+  max-width: 30rem;
+  border-radius: 1rem;
+}
+
+.deleteIcon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  & svg {
+    width: 3rem;
+    height: 3rem;
+    color: #fff;
+    background: rgb(255, 74, 74);
+    border-radius: 50%;
+    padding: 0.3rem;
+  }
+}
+
+.title {
+  font-size: 2.4rem;
+}

@@ -1,0 +1,29 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+  width: 100%;
+}
+
+.noHaveCars {
+  width: fit-content;
+  margin-top: 10rem;
+
+  & > p {
+    font-size: 1, 8rem;
+  }
+}
+
+.carsListContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
