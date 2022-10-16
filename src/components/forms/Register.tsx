@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import styles from '../../styles/components/forms/login.module.scss'
 import { useForm } from '../../hooks/useForm'
 import { useAuth } from '../../context/useAuth'
 import { Input } from '../Input'
+import { ShowPassword } from '../ShowPassword'
 
 export const Register = () => {
   const { email, password, onChange } = useForm({
@@ -12,6 +13,13 @@ export const Register = () => {
   })
 
   const { errorRegister, register, changeViewScreen } = useAuth()
+
+  const [visible, setVisible] = useState(false)
+
+  const changeVisibility = (visible: boolean) => {
+    setVisible(!visible)
+  }
+
   return (
     <>
       <main>
@@ -34,8 +42,13 @@ export const Register = () => {
             onChange={({ target }: { target: HTMLInputElement }) =>
               onChange(target.value, 'password')
             }
-            type={'password'}
-          />
+            type={visible ? 'text' : 'password'}
+          >
+            <ShowPassword
+              changeVisibility={() => changeVisibility(visible)}
+              visible={visible}
+            />
+          </Input>
           {errorRegister && <p className='errorText'>{errorRegister}</p>}
           <section className={styles.buttonContainer}>
             <button
