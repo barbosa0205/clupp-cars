@@ -5,6 +5,7 @@ import {
   onAuthStateChanged,
   setPersistence,
   signInWithEmailAndPassword,
+  signOut,
 } from 'firebase/auth'
 import { auth } from '../firebase/index'
 
@@ -22,6 +23,7 @@ interface AuthContextProps {
   changeSearchWord: (word: string) => void
   login: (email: string, password: string) => void
   register: (email: string, password: string) => void
+  logout: () => void
   changeViewScreen: () => void
 }
 export const AuthContext = createContext({} as AuthContextProps)
@@ -102,6 +104,10 @@ export const AuthContextProvider = ({ children }: Props) => {
     }
   }
 
+  const logout = async () => {
+    await signOut(auth)
+  }
+
   const changeViewScreen = () => {
     setViewLoginScreen(!viewLoginScreen)
   }
@@ -115,6 +121,13 @@ export const AuthContextProvider = ({ children }: Props) => {
           uid: data.uid,
         })
         setIsAuth(true)
+      } else {
+        setUser({
+          email: '',
+          uid: '',
+          signedIn: false,
+        })
+        setIsAuth(false)
       }
     })
   }, [])
@@ -130,6 +143,7 @@ export const AuthContextProvider = ({ children }: Props) => {
     errorRegister,
     searchWord,
     changeSearchWord,
+    logout,
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
