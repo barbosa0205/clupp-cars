@@ -7,21 +7,23 @@ import { Button } from './components/Button'
 import { useAuth } from './context/useAuth'
 
 function App() {
-  const { logout } = useAuth()
+  const { logout, isAuth } = useAuth()
   return (
     <div className='App'>
       <header className='header'>
         <img src={logo} alt='logo' />
         <div className='logoutContainer'>
-          <Button
-            padding='.5rem 1.5rem'
-            title='cerrar sesión'
-            onClick={() => {
-              logout()
-            }}
-          >
-            <i className='ri-logout-box-line'></i>
-          </Button>
+          {isAuth && (
+            <Button
+              padding='.5rem 1.5rem'
+              title='cerrar sesión'
+              onClick={() => {
+                logout()
+              }}
+            >
+              <i className='ri-logout-box-line'></i>
+            </Button>
+          )}
         </div>
       </header>
 
