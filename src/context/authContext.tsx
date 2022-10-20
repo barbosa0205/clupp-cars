@@ -1,6 +1,9 @@
 import { createContext, ReactNode, useEffect, useState } from 'react'
 import {
+  browserLocalPersistence,
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  setPersistence,
   signInWithEmailAndPassword,
 } from 'firebase/auth'
 import { auth } from '../firebase/index'
@@ -55,6 +58,7 @@ export const AuthContextProvider = ({ children }: Props) => {
         setErrorLogin(`${error}`)
         return
       }
+
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
@@ -101,6 +105,19 @@ export const AuthContextProvider = ({ children }: Props) => {
   const changeViewScreen = () => {
     setViewLoginScreen(!viewLoginScreen)
   }
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (data) => {
+      if (data) {
+        setUser({
+          email: data.email ? data.email : '',
+          signedIn: true,
+          uid: data.uid,
+        })
+        setIsAuth(true)
+      }
+    })
+  }, [])
 
   const value: AuthContextProps = {
     register,
